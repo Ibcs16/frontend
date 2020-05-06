@@ -38,7 +38,7 @@ const PreferenceContext = createContext<PreferenceContextData>(
 
 const PreferenceProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<PreferenceState>(() => {
-    const preferences = localStorage.getItem('preferences');
+    const preferences = localStorage.getItem('preferences') || JSON.stringify({} as Preference) ;
     // const preferences = '[]';
     const items: Item[] = [
       {
@@ -63,9 +63,9 @@ const PreferenceProvider: React.FC = ({ children }) => {
       },
     ];
 
-    if (items && preferences) {
-      return { items, preferences: JSON.parse(preferences) };
-    }
+    // if (items) {
+    return { items, preferences: JSON.parse(preferences)};
+
 
     return {} as PreferenceState;
   });
