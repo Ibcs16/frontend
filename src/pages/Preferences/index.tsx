@@ -165,7 +165,7 @@ const Preferences: React.FC = () => {
       : { realities: [], teams: [] };
 
     const realities: Array<string> = [
-      ...preferences.realities,
+      ...(preferences.realities ? preferences.realities : []),
       ...selected,
     ].filter((pref, index, array) => array.indexOf(pref) === index);
 

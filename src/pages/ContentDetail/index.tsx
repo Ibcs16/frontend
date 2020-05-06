@@ -67,19 +67,35 @@ const Dashboard: React.FC = () => {
         <Tabs />
       </Offer>
       <Offer>
-        {preferences.realities.includes('Eletrônica') && params.id === '0' && (
-          <SliderTC
-            title="Músicas, Programas e Podcasts"
-            isTC
-            items={dados.music}
-          />
-        )}
+        {preferences.realities.some((el) => {
+          return [
+            'Lançamentos',
+            'Mais tocadas',
+            'Em ascenção',
+            'Internacional',
+            'Brasil',
+            'Sertanejo',
+            'Funk',
+            'Samba',
+            'Pagode',
+            'MPB',
+            'Eletrônica',
+            'Bem estar',
+          ].includes(el);
+        }) &&
+          params.id === '0' && (
+            <SliderTC
+              title="Músicas, Programas e Podcasts"
+              isTC
+              items={dados.music}
+            />
+          )}
       </Offer>
 
       <Offer>
-        {preferences.realities.includes('Jornalismo') && (
-          <SliderTC title="Notícias" isTC items={dados.news} />
-        )}
+        {preferences.realities.some((el) => {
+          return ['Jornalismo', 'Esportes'].includes(el);
+        }) && <SliderTC title="Notícias" isTC items={dados.news} />}
       </Offer>
 
       {/* <Offer>
