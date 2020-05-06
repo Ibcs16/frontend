@@ -63,9 +63,9 @@ const PreferenceProvider: React.FC = ({ children }) => {
       },
     ];
 
-    // if (items) {
-    return { items, preferences: JSON.parse(preferences)};
-
+    if (items && preferences) {
+      return { items, preferences: JSON.parse(preferences) };
+    }
 
     return { items } as PreferenceState;
   });
