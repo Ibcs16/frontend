@@ -1,4 +1,6 @@
-Utilizei libs como:
+O "TUDO CONECTADO" é uma feature que poderá ser adicionada em todos as plataformas GLOBO, fazendo com que possa ser criada recomendação personalizada para o usuário de tudo que ele gosta que esteja relacionado ao conteúdo que esteja consumindo, gerando integração das plataformas, interativiade e engajamento.
+
+✨Utilizamos libs como:
 
 - styled-components
 - react-icons
@@ -7,14 +9,22 @@ Utilizei libs como:
 - react-router
 
 
-**Main Page**
+**Personalização**
 
-![](screenshots/3.PNG)
+![](screenshots/personalize.PNG)
 
-**Details page**
+**Personalização de outros produtos**
 
-![](screenshots/2.PNG)
+![](screenshots/personalize-2.PNG)
 
-**Details page - Mobile Version**
+**Página principal**
 
-![](screenshots/1.PNG)
+![](screenshots/main.PNG)
+
+**Exemplo BBB com TUDO CONECTADO**
+
+![](screenshots/bbb.PNG)
+
+**Exemplo GLOBOESPORTE com TUDO CONECTADO**
+
+![](screenshots/sport.PNG)

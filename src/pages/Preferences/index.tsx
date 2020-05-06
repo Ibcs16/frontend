@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import GridTeams from '../../components/GridTeams';
 import GridPreferences from '../../components/GridPreferences';
 import PreferenceButton from '../../components/Button/Preference';
 
-import atheletico from '../../assets/serieA/Athletico-PR.svg';
 import { useShowHeader } from '../../hooks/showHeader';
+import { usePreference } from '../../hooks/preference';
 
 import {
   FullPage,
@@ -25,6 +25,11 @@ interface PreferenceContent {
   subtitle: string;
   subtitleHighlight: string;
   options: Array<string>;
+}
+
+interface Preference {
+  realities: string[];
+  teams: string[];
 }
 
 const content: Array<PreferenceContent> = [
@@ -119,6 +124,7 @@ const content: Array<PreferenceContent> = [
 
 const Preferences: React.FC = () => {
   const history = useHistory();
+  const { setPreferences } = usePreference();
   const [prefIndex, setPrefIndex] = useState(0);
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -142,27 +148,33 @@ const Preferences: React.FC = () => {
         teams: selected,
       }),
     );
+    setPreferences({
+      preferences: {
+        ...preferences,
+        teams: selected,
+      },
+    });
 
     history.push('/dashboard');
   };
 
   const goFoward = () => {
     const localStoragePrefs = localStorage.getItem('preferences');
-    const preferences = localStoragePrefs
+    const preferences: Preference = localStoragePrefs
       ? JSON.parse(localStoragePrefs)
       : { realities: [], teams: [] };
 
-    const realities = [...preferences.realities, ...selected].filter(
-      (pref, index, array) => array.indexOf(pref) === index,
-    );
+    const realities: Array<string> = [
+      ...preferences.realities,
+      ...selected,
+    ].filter((pref, index, array) => array.indexOf(pref) === index);
 
-    localStorage.setItem(
-      'preferences',
-      JSON.stringify({
-        teams: preferences.teams,
-        realities,
-      }),
-    );
+    const newPreferences: Preference = {
+      teams: preferences.teams,
+      realities,
+    };
+    localStorage.setItem('preferences', JSON.stringify(newPreferences));
+
     setPrefIndex(prefIndex + 1);
     setSelected([]);
   };

@@ -27,7 +27,7 @@ interface PreferenceState {
 }
 
 interface PreferenceContextData {
-  setPreferences(preferences: string[]): Promise<void>;
+  setPreferences(preferences: any): Promise<void>;
   items: Item[];
   preferences: Preference;
 }
@@ -53,7 +53,7 @@ const PreferenceProvider: React.FC = ({ children }) => {
       },
       {
         id: '1',
-        title: 'Bbb 2020',
+        title: 'Globo Esporte',
         categories: ['esporte', 'tv'],
         highlight: esporteHighlight,
         src: esporteContent,
@@ -67,7 +67,7 @@ const PreferenceProvider: React.FC = ({ children }) => {
     return { items, preferences: JSON.parse(preferences)};
 
 
-    return {} as PreferenceState;
+    return { items } as PreferenceState;
   });
 
   const setPreferences = useCallback(async ({ preferences }) => {
